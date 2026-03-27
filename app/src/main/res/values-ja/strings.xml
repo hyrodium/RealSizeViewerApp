@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 全画面表示モード -->
+    <string name="fullscreen_hint">3回タップすると全画面解除ボタンが現れます</string>
+    <string name="fullscreen_exit_description">全画面表示を終了</string>
+
+    <!-- 共通 -->
+    <string name="no_document_loaded">SVG / PDFファイルを読み込んでください</string>
+    <string name="done">完了</string>
+    <string name="cancel">キャンセル</string>
+    <string name="apply">適用</string>
+    <string name="skip">スキップ</string>
+    <string name="send">送信</string>
+    <string name="sending">送信中…</string>
+    <string name="error_prefix">エラー: %1$s</string>
+
+    <!-- キャリブレーション -->
+    <string name="calibration_x_label">X方向キャリブレーション</string>
+    <string name="calibration_y_label">Y方向キャリブレーション</string>
+    <string name="calibration_tap_to_input">タップして数値入力</string>
+    <string name="calibration_reset_machine_dpi">機械DPIに設定</string>
+    <string name="calibration_reset_server">推奨設定にリセット</string>
+    <string name="calibration_upload">キャリブレーション結果の送信</string>
+
+    <!-- FAB contentDescription -->
+    <string name="fab_fullscreen">全画面表示</string>
+    <string name="fab_open_file">ファイルを開く</string>
+    <string name="fab_zoom">拡大率</string>
+    <string name="fab_background_color">背景色</string>
+    <string name="fab_calibration">キャリブレーション</string>
+
+    <!-- ドロップダウンラベル -->
+    <string name="zoom_label">拡大率</string>
+    <string name="background_color_label">背景色</string>
+
+    <!-- 送信同意ダイアログ -->
+    <string name="upload_dialog_title">キャリブレーション結果の送信</string>
+    <string name="upload_dialog_body">以下の情報を匿名でサーバーに送信します。送信データは他のユーザーの推奨値計算に活用されます。</string>
+    <string name="upload_dialog_data_list">• メーカー名・モデル名\n• OSバージョン\n• 報告DPI値（xdpi / ydpi）\n• キャリブレーション補正係数\n• アプリバージョン</string>
+
+    <!-- サーバー更新通知ダイアログ -->
+    <string name="server_update_title">推奨キャリブレーション値が更新されました</string>
+    <string name="server_update_body">このデバイスの推奨補正係数がサーバーで更新されています。</string>
+    <string name="server_update_factor_x">factorX: %1$.4f → %2$.4f</string>
+    <string name="server_update_factor_y">factorY: %1$.4f → %2$.4f</string>
+    <string name="server_update_sample_count">サンプル数: %1$d</string>
+    <string name="server_update_sample_count_low">サンプル数: %1$d（サンプル数少）</string>
+    <string name="server_update_xdpi_mismatch">⚠ xdpi不一致: 実機=%1$.1f, DB=%2$.1f\nこのデバイスに補正係数が合わない可能性があります</string>
+
+    <!-- エラーメッセージ（ViewModel で使用） -->
+    <string name="error_load_svg">SVGの読み込みに失敗しました</string>
+    <string name="error_load_pdf">PDFの読み込みに失敗しました</string>
+    <string name="error_upload">送信に失敗しました</string>
+</resources>

@@ -1,0 +1,26 @@
+Re(al)SizeViewer displays SVG and PDF files at their true physical size on your Android device screen.
+
+Use it for pre-print verification, checking product part dimensions, or viewing DIY blueprints at actual scale.
+
+■ Key Features
+
+• Real-size display of SVG / PDF files (100% scale using device DPI)
+• Three operation modes:
+  - Fullscreen mode: hides all UI elements for clean viewing
+  - Alignment mode: drag to move, two-finger gesture to rotate
+  - Calibration mode: pinch to adjust DPI correction factor
+• Custom zoom factor input
+• Background color selection (6 presets)
+• Keep screen on option
+• Optional sharing of device DPI calibration data
+
+■ Who Is It For?
+
+• Designers and engineers (pre-print size verification)
+• Manufacturing (checking physical part dimensions)
+• DIY enthusiasts (viewing blueprints at actual scale)
+
+■ Open Source
+
+This app is open-source software under the MIT License.
+Source code: https://github.com/hyrodium/RealSizeViewerApp

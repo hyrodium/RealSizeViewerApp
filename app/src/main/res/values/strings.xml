@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Re(al)SizeViewer</string>
+
+    <!-- Fullscreen mode -->
+    <string name="fullscreen_hint">Triple-tap to show the exit button</string>
+    <string name="fullscreen_exit_description">Exit fullscreen</string>
+
+    <!-- Common -->
+    <string name="no_document_loaded">Please load an SVG or PDF file</string>
+    <string name="done">Done</string>
+    <string name="cancel">Cancel</string>
+    <string name="apply">Apply</string>
+    <string name="skip">Skip</string>
+    <string name="send">Send</string>
+    <string name="sending">Sending…</string>
+    <string name="error_prefix">Error: %1$s</string>
+
+    <!-- Calibration -->
+    <string name="calibration_x_label">X-axis calibration</string>
+    <string name="calibration_y_label">Y-axis calibration</string>
+    <string name="calibration_tap_to_input">Tap to enter value</string>
+    <string name="calibration_reset_machine_dpi">Set to device DPI</string>
+    <string name="calibration_reset_server">Reset to recommended</string>
+    <string name="calibration_upload">Submit calibration data</string>
+
+    <!-- FAB content descriptions -->
+    <string name="fab_fullscreen">Fullscreen</string>
+    <string name="fab_open_file">Open file</string>
+    <string name="fab_zoom">Zoom</string>
+    <string name="fab_background_color">Background color</string>
+    <string name="fab_calibration">Calibration</string>
+
+    <!-- Dropdown labels -->
+    <string name="zoom_label">Zoom</string>
+    <string name="background_color_label">Background color</string>
+
+    <!-- Upload consent dialog -->
+    <string name="upload_dialog_title">Submit calibration data</string>
+    <string name="upload_dialog_body">The following data will be sent anonymously to the server to help calculate recommended values for other users.</string>
+    <string name="upload_dialog_data_list">• Manufacturer and model name\n• OS version\n• Reported DPI (xdpi / ydpi)\n• Calibration correction factor\n• App version</string>
+
+    <!-- Server update dialog -->
+    <string name="server_update_title">Recommended calibration updated</string>
+    <string name="server_update_body">The recommended correction factor for this device has been updated on the server.</string>
+    <string name="server_update_factor_x">factorX: %1$.4f → %2$.4f</string>
+    <string name="server_update_factor_y">factorY: %1$.4f → %2$.4f</string>
+    <string name="server_update_sample_count">Samples: %1$d</string>
+    <string name="server_update_sample_count_low">Samples: %1$d (low sample count)</string>
+    <string name="server_update_xdpi_mismatch">⚠ xdpi mismatch: device=%1$.1f, DB=%2$.1f\nThis correction factor may not be accurate for this device</string>
+
+    <!-- Error messages (used in ViewModel) -->
+    <string name="error_load_svg">Failed to load SVG</string>
+    <string name="error_load_pdf">Failed to load PDF</string>
+    <string name="error_upload">Failed to submit</string>
+</resources>
