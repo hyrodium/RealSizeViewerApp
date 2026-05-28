@@ -403,8 +403,10 @@ fun ViewerScreen(
                                 keyboardActions = KeyboardActions(
                                     onDone = {
                                         editText.toFloatOrNull()?.let { value ->
-                                            if (isXMode) viewModel.setCalibrationFactorX(value)
-                                            else viewModel.setCalibrationFactorY(value)
+                                            if (value > 0f) {
+                                                if (isXMode) viewModel.setCalibrationFactorX(value)
+                                                else viewModel.setCalibrationFactorY(value)
+                                            }
                                         }
                                         sliderPosition = 0f
                                         isEditingValue = false

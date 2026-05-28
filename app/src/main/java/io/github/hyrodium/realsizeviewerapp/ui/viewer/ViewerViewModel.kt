@@ -200,21 +200,32 @@ class ViewerViewModel @Inject constructor(
             x = _svgOffset.value.x * pxPerMmX,
             y = _svgOffset.value.y * pxPerMmY,
         )
-        val bitmap = withContext(Dispatchers.IO) {
-            holder.renderViewport(
-                screenWidth = w,
-                screenHeight = h,
-                offset = offsetPx,
-                effectiveRotation = effectiveRot,
-                xdpi = dm.xdpi,
-                ydpi = dm.ydpi,
-                calibrationFactorX = _calibrationFactorX.value,
-                calibrationFactorY = _calibrationFactorY.value,
-                zoomFactor = _zoomFactor.value,
-                backgroundColor = _backgroundColor.value,
-            )
+        val bitmap = try {
+            withContext(Dispatchers.IO) {
+                // レンダリング開始前にホルダーが差し替えられていたらスキップ
+                if (_pdfRendererHolder.value !== holder) return@withContext null
+                holder.renderViewport(
+                    screenWidth = w,
+                    screenHeight = h,
+                    offset = offsetPx,
+                    effectiveRotation = effectiveRot,
+                    xdpi = dm.xdpi,
+                    ydpi = dm.ydpi,
+                    calibrationFactorX = _calibrationFactorX.value,
+                    calibrationFactorY = _calibrationFactorY.value,
+                    zoomFactor = _zoomFactor.value,
+                    backgroundColor = _backgroundColor.value,
+                )
+            }
+        } catch (_: Exception) {
+            // レンダリング中にレンダラーが閉じられた場合は無視
+            null
         }
-        _pdfViewportBitmap.value = bitmap
+        if (bitmap != null) {
+            val old = _pdfViewportBitmap.value
+            _pdfViewportBitmap.value = bitmap
+            old?.recycle()
+        }
     }
 
     fun loadDefaultSvg(screenRotation: Int) {
@@ -252,15 +263,14 @@ class ViewerViewModel @Inject constructor(
                     model = Build.MODEL,
                 )
                 if (recommended != null) {
-                    calibrationDataStore.saveServerValues(
-                        recommended.medianFactorX.toFloat(),
-                        recommended.medianFactorY.toFloat(),
-                    )
+                    val serverX = recommended.medianFactorX.toFloat()
+                    val serverY = recommended.medianFactorY.toFloat()
+                    // 異常値（0以下）はDataStoreへの保存・ダイアログ提案をスキップ
+                    if (serverX <= 0f || serverY <= 0f) return@launch
+                    calibrationDataStore.saveServerValues(serverX, serverY)
                     // 現在値と比較して1%超の差があればダイアログ提案
                     val currentX = _calibrationFactorX.value
                     val currentY = _calibrationFactorY.value
-                    val serverX = recommended.medianFactorX.toFloat()
-                    val serverY = recommended.medianFactorY.toFloat()
                     val changeX = abs(serverX - currentX) / currentX
                     val changeY = abs(serverY - currentY) / currentY
                     if (changeX > 0.01f || changeY > 0.01f) {
@@ -434,7 +444,7 @@ class ViewerViewModel @Inject constructor(
                     calibrationFactorX = _calibrationFactorX.value.toDouble(),
                     calibrationFactorY = _calibrationFactorY.value.toDouble(),
                     appVersion = BuildConfig.VERSION_NAME,
-                    buildSource = BuildConfig.BUILD_FLAVOR,
+                    buildSource = BuildConfig.BUILD_SOURCE,
                 )
                 calibrationApiService.postCalibration(request)
                 _uploadState.value = UploadState.Success

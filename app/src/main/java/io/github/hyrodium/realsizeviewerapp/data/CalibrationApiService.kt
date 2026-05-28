@@ -36,8 +36,6 @@ class CalibrationApiService @Inject constructor() {
     }
 
     suspend fun postCalibration(request: CalibrationRequest) {
-        // API_KEY が未設定の場合は送信しない（googleplayフレーバーでCIキー未注入の場合）
-        if (BuildConfig.API_KEY.isEmpty()) throw Exception("API key not configured")
         val response = client.post("$BASE_URL/calibrations") {
             header("X-API-Key", BuildConfig.API_KEY)
             contentType(ContentType.Application.Json)
@@ -50,16 +48,11 @@ class CalibrationApiService @Inject constructor() {
         }
     }
 
-    /**
-     * 推奨キャリブレーション値を取得する。
-     * デバイスデータが未登録またはAPI_KEY未設定の場合は null を返す。
-     */
+    /** デバイスデータが未登録の場合は null を返す。 */
     suspend fun getRecommended(
         manufacturer: String,
         model: String,
     ): RecommendedCalibrationResponse? {
-        // API_KEY が未設定の場合はサーバー問い合わせをスキップ（googleplayフレーバーでCIキー未注入の場合）
-        if (BuildConfig.API_KEY.isEmpty()) return null
         val response = client.get("$BASE_URL/calibrations/recommended") {
             header("X-API-Key", BuildConfig.API_KEY)
             parameter("manufacturer", manufacturer)
