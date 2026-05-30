@@ -1,10 +1,10 @@
 # Re(al)SizeViewer
 
+![Re(al)SizeViewer Logo](Re(al)SizeViewer-logo-500.png)
+
 An Android app that displays SVG and PDF files at their true physical size on your screen.
 
 Use it for pre-print verification, checking product part dimensions, or viewing DIY blueprints at actual scale.
-
-[<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" alt="Get it on F-Droid" height="80">](https://f-droid.org/packages/io.github.hyrodium.realsizeviewerapp/)
 
 ## Screenshots
 
